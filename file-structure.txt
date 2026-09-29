@@ -1,0 +1,12 @@
+src/
+  config/        → database connection and settings
+  controllers/   → the logic for each endpoint (what happens)
+  middleware/    → code that runs between the request and the controller (auth, errors)
+  models/        → Mongoose schemas (User, Employee)
+  routes/        → URL-to-controller mapping (where requests go)
+  services/      → reusable business logic
+  utils/         → helpers (logger, custom error class)
+  validators/    → input validation rules
+  app.js
+  server.js
+logs/
