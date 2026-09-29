@@ -1,0 +1,18 @@
+STEP-1: 
+-Installed all the npm packages and dependecies 
+- npm install express
+- to install the package.json = i did is ran (npm init -y)
+- ran 
+(npm install express dotenv
+npm install --save-dev nodemon)
+
+STEP-2:
+- setup the folder structure
+- create connection between app.js and server.js just to connect to the local host and run the connection string.
+
+STEP-3 :
+- create a free cluster and save the env files with the DB_URI: with the names changed and passwords changed
+- save all the imp sensitive data in .env files like jwt token and the mongoose db credentials 
+- install mongooose bcryt 'dependecies'
+- creating src/models/user.js
+
