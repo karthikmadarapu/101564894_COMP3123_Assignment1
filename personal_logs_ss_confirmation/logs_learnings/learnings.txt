@@ -22,3 +22,6 @@ DEBUGGING--
 - try to keep the .env file in the root dir. why?=  when you inject .env deep indside the other execution files which are ready to execute will try to search the .env file, this leads to misleading the file path of the .env and errors pop up. 
 
 - Im using mongodb atlas i.e a cloud server and i have my own cluster in it and previously i connected my cluster and the project using my home IP address and now i tried connecting using school IP address and it gave me whitelist message that means it's asking me to allow other IP address to access the mongodb atlas 
+
+
+STEP 4 - phase 3 login/signup which  signups the new user for the first time and gives a secret that they store with them and give it to back when they login and this secret will taken by the system and will give a JWt token so that they don't have to renter the credentials and  the system remembers the existing JWT token they have and it authorises.
