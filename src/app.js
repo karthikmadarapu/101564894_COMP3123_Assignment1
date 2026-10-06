@@ -2,11 +2,17 @@
 
 const express = require('express');
 const userRoutes = require('./routes/userRoutes');
+const requestLogger = require('./middleware/requestLogger');
+const notFound = require('./middleware/notFound');
+const errorHandler = require('./middleware/errorHandler');
+
 
 const app = express();
 
 // Parse JSON request bodies into req.body
+app.use(requestLogger);
 app.use(express.json());
+
 
 app.use('/api/v1/user', userRoutes);
 
@@ -17,7 +23,13 @@ app.get('/health', (req, res) => {
     uptime: process.uptime(),        // seconds the server has been running
     timestamp: new Date().toISOString(),
   });
+
 });
+
+
+  app.use('/api/v1/user', userRoutes);
+  app.use(notFound);
+  app.use(errorHandler);
 
 
 
