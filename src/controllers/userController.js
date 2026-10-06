@@ -7,7 +7,7 @@ const EMAIL_REGEX = /^\S+@\S+\.\S+$/;
 // POST /api/v1/user/signup
 exports.signup = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password } = req.body || {};
 
     if (![username, email, password].every(isNonEmptyString)) {
       return res.status(400).json({
