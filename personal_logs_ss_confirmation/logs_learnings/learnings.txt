@@ -24,4 +24,12 @@ DEBUGGING--
 - Im using mongodb atlas i.e a cloud server and i have my own cluster in it and previously i connected my cluster and the project using my home IP address and now i tried connecting using school IP address and it gave me whitelist message that means it's asking me to allow other IP address to access the mongodb atlas 
 
 
-STEP 4 - phase 3 login/signup which  signups the new user for the first time and gives a secret that they store with them and give it to back when they login and this secret will taken by the system and will give a JWt token so that they don't have to renter the credentials and  the system remembers the existing JWT token they have and it authorises.
+STEP 4 - phase 3 login/signup which  signups the new user for the first time and gives a secret that they store with them and give it to back when they login and this secret will  be taken by the system and will give a JWt token so that they don't have to renter the credentials for an hour and  the system remembers the existing JWT token they have and it authorises.
+
+signup - check {username, email, password} , and check if nothing is missing from the three if yes then invalid must enter all the fiels to authorise.
+signup- email has to match the regex pattern to authorise the signup process.
+
+login- need username || email and password to authenticate and give the jwt token so that they will be able to login anytime in or under and hour. time can be differed .
+
+exports the module so that we can connect in the other file such as routes.js and 
+
