@@ -2,3 +2,6 @@ node_modules/
 *.env
 .env
 logs/*.log
+
+
+personal_logs_ss_confirmation
