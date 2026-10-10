@@ -29,12 +29,22 @@ exports.signup = asyncHandler(async (req, res) => {
 
 // POST /api/v1/user/login
 exports.login = asyncHandler(async (req, res) => {
-  const { email, username, password } = req.body;
-  const query = email ? { email } : { username };
+  const { email, username, password } = req.body || {};
+
+  // Only accept real, non-empty strings (blocks {"$gt": ""} injection and missing fields)
+  const isStr = (v) => typeof v === 'string' && v.trim() !== '';
+
+  if (!(isStr(email) || isStr(username)) || !isStr(password)) {
+    throw new AppError('Email or username, and password are required', 400);
+  }
+
+  const query = isStr(email)
+    ? { email: email.toLowerCase().trim() }
+    : { username: username.trim() };
 
   const user = await User.findOne(query).select('+password');
   if (!user || !(await user.comparePassword(password))) {
-    logger.warn('Login failed', { identifier: email || username, ip: req.ip });
+    logger.warn('Login failed', { identifier: query.email || query.username, ip: req.ip });
     throw new AppError('Invalid Username and password', 401);
   }
 
