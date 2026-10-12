@@ -1,0 +1,17 @@
+$kind: http-request
+name: B cannot read A's employee
+url: "{{baseUrl}}/api/v1/emp/employees/{{resourceA}}"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenB}}"
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"B blocked from reading A's employee\", () => {\r
+
+      \    pm.expect(pm.response.code).to.be.oneOf([403, 404]);\r
+
+      \  });"
+    language: text/javascript
+order: 2000

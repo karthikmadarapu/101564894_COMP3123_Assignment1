@@ -1,0 +1,19 @@
+name: local
+values:
+  - key: baseUrl
+    value: ''
+  - key: tokenA
+    value: ''
+  - key: tokenB
+    value: ''
+  - key: resourceA
+    value: ''
+  - key: resourceB
+    value: ''
+  - key: emailA
+    value: ''
+  - key: emailB
+    value: ''
+  - key: tempA
+    value: ''
+color: 180

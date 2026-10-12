@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/emp/employees/{{tempA}}"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenA}}"
+scripts:
+  - type: afterResponse
+    code: '  pm.test("Gone (404)", () => pm.response.to.have.status(404));'
+    language: text/javascript
+order: 7000

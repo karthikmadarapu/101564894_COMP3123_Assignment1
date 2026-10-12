@@ -1,0 +1,22 @@
+$kind: http-request
+description: ""
+url: "{{baseUrl}}/api/v1/user/login"
+method: POST
+headers:
+  "": ""
+body:
+  type: json
+  content: "{ \r
+
+    \    \"username\"    :   \"Maddy_69\",\r
+
+    \    \"password\"    :   \"Maddy69@\"\r
+
+    }"
+auth:
+  type: noauth
+scripts:
+  - type: afterResponse
+    code: ""
+    language: text/javascript
+order: 1000

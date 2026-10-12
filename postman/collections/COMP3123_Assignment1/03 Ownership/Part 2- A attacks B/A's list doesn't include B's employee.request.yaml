@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/emp/employees"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenA}}"
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"200 OK\", () => pm.response.to.have.status(200));\r
+
+      \  pm.test(\"A can't see B's employee in list\", () => {\r
+
+      \    const ids = pm.response.json().map(e => e._id || e.employee_id);\r
+
+      \    pm.expect(ids).to.not.include(pm.environment.get(\"resourceB\"));\r
+
+      \  });"
+    language: text/javascript
+order: 5000

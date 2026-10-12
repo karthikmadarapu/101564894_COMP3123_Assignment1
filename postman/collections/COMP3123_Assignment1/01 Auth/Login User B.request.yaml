@@ -1,0 +1,35 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/user/login"
+method: POST
+body:
+  type: json
+  content: "  {\r
+
+    \    \"email\": \"{{emailB}}\",\r
+
+    \    \"password\": \"Password123!\"\r
+
+    \  }"
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"Login B succeeds (200)\", () => {\r
+
+      \    pm.response.to.have.status(200);\r
+
+      \  });\r
+
+      \r
+
+      \  const body = pm.response.json();\r
+
+      \  // Covers the common response shapes; keep the one that matches yours\r
+
+      \  const token = body.token || body.jwt_token || (body.data && body.data.token);\r
+
+      \r
+
+      \  pm.test(\"Token returned\", () => pm.expect(token).to.be.a(\"string\"));\r
+
+      \  pm.environment.set(\"tokenB\", token);"
+    language: text/javascript
+order: 5000

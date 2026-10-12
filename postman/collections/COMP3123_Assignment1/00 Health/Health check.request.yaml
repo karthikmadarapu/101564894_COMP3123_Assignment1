@@ -1,0 +1,20 @@
+$kind: http-request
+url: "{{baseUrl}}/health"
+method: GET
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"Server is up (200)\", () => pm.response.to.have.status(200));\r
+
+      \  pm.test(\"No X-Powered-By header (Helmet)\", () => {\r
+
+      \    pm.expect(pm.response.headers.has(\"X-Powered-By\")).to.be.false;\r
+
+      \  });\r
+
+      \  pm.test(\"Helmet security header present\", () => {\r
+
+      \    pm.expect(pm.response.headers.has(\"X-Content-Type-Options\")).to.be.true;\r
+
+      \  });"
+    language: text/javascript
+order: 1000

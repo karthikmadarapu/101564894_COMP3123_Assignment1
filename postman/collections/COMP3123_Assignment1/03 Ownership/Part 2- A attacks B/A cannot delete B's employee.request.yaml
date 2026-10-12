@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/emp/employees/{{resourceB}}"
+method: DELETE
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenA}}"
+scripts:
+  - type: afterResponse
+    code: " pm.test(\"A blocked from deleting B's employee\", () => {\r
+
+      \    pm.expect(pm.response.code).to.be.oneOf([403, 404]);\r
+
+      \  });"
+    language: text/javascript
+order: 3000

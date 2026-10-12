@@ -11,6 +11,7 @@ const { apiLimiter, authLimiter } = require('./middleware/rateLimiter');
 
 
 const app = express();
+app.set('trust proxy', 1);
 
 // Parse JSON request bodies into req.body
 app.use(requestLogger);

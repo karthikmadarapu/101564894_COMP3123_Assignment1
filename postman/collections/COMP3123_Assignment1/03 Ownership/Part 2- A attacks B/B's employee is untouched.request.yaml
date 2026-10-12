@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/emp/employees/{{resourceB}}"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenB}}"
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"B's employee still exists (200)\", () => pm.response.to.have.status(200));\r
+
+      \  pm.test(\"Not modified by A\", () => {\r
+
+      \    pm.expect(pm.response.json().position).to.not.eql(\"HACKED\");\r
+
+      \  });"
+    language: text/javascript
+order: 4000

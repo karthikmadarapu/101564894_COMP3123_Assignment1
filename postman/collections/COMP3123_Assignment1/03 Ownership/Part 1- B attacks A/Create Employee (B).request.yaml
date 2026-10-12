@@ -1,0 +1,37 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/emp/employees"
+method: POST
+body:
+  type: json
+  content: "  {\r
+
+    \    \"first_name\": \"Bob\",\r
+
+    \    \"last_name\": \"Owner\",\r
+
+    \    \"email\": \"{{$randomEmail}}\",\r
+
+    \    \"position\": \"Developer\",\r
+
+    \    \"salary\": 70000,\r
+
+    \    \"date_of_joining\": \"2026-10-01\",\r
+
+    \    \"department\": \"Engineering\"\r
+
+    \  }"
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenB}}"
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"B created employee (201)\", () => pm.response.to.have.status(201));\r
+
+      \  const body = pm.response.json();\r
+
+      \  const id = body.employee_id || body._id || (body.employee && body.employee._id);\r
+
+      \  pm.environment.set(\"resourceB\", id);"
+    language: text/javascript
+order: 1000

@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/emp/employees/{{resourceB}}"
+method: PUT
+body:
+  type: json
+  content: '{ "position": "HACKED" }'
+auth:
+  type: bearer
+  credentials:
+    token: "{{tokenA}}"
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"A blocked from updating B's employee\", () => {\r
+
+      \    pm.expect(pm.response.code).to.be.oneOf([403, 404]);\r
+
+      \  });"
+    language: text/javascript
+order: 2000

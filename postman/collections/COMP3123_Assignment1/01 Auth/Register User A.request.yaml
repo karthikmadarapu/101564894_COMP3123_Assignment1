@@ -1,0 +1,28 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/user/signup"
+method: POST
+body:
+  type: json
+  content: "   {\r
+
+    \     \"username\": \"userA\",\r
+
+    \     \"email\": \"{{emailA}}\",\r
+
+    \     \"password\": \"Password123!\"\r
+
+    \   }"
+scripts:
+  - type: beforeRequest
+    code: "   // A fresh email every run, so re-running never hits \"email already exists\"\r
+
+      \   pm.environment.set(\"emailA\", `a_${Date.now()}@test.com`);"
+    language: text/javascript
+  - type: afterResponse
+    code: "   pm.test(\"User A registered (201)\", () => {\r
+
+      \     pm.response.to.have.status(201); // use 200 if your API returns that\r
+
+      \   });"
+    language: text/javascript
+order: 2000
