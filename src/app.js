@@ -29,7 +29,7 @@ app.get('/health', (req, res) => {
 
   app.use('/api/v1/user', userRoutes);
   
-  // app.use('/api/v1/emp', require('./routes/employeeRoutes'));
+  app.use('/api/v1/emp', require('./routes/employeeRoutes'));
 
   app.use(notFound);
   app.use(errorHandler);
