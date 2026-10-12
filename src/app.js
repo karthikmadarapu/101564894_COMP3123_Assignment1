@@ -6,6 +6,8 @@ const userRoutes = require('./routes/userRoutes');
 const requestLogger = require('./middleware/requestLogger');
 const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
+const { apiLimiter, authLimiter } = require('./middleware/rateLimiter');
+
 
 
 const app = express();
@@ -17,7 +19,12 @@ app.use(express.json());
 
 
 
+// General limiter on everything under /api
+app.use('/api', apiLimiter);
 
+// Strict limiter only on the auth endpoints
+app.use('/api/v1/user/login', authLimiter);
+app.use('/api/v1/user/signup', authLimiter);
 
 
 // Health check: lets anyone confirm the API is alive
