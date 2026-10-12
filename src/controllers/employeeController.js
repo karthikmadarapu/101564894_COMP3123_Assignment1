@@ -54,7 +54,7 @@ exports.update = async (req, res, next) => {
   }
 };
 
-// DELETE /employees?eid=xxx → 204
+// DELETE /employees/:eid
 exports.remove = async (req, res, next) => {
   try {
     const result = await Employee.findOneAndDelete({ _id: req.params.eid, user: req.user.id });
