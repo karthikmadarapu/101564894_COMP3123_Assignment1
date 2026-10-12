@@ -1,0 +1,14 @@
+name: Assignment 1
+values:
+  - key: "baseUrl\t"
+    value: ''
+  - key: tokenA
+    value: ''
+  - key: tokenB
+    value: ''
+  - key: userIdA
+    value: ''
+  - key: userIdB
+    value: ''
+  - key: eidA
+    value: ''
