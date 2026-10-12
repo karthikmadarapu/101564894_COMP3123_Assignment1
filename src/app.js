@@ -1,6 +1,7 @@
 // app.js configures the app (middleware and routes)
 
 const express = require('express');
+const helmet = require('helmet');
 const userRoutes = require('./routes/userRoutes');
 const requestLogger = require('./middleware/requestLogger');
 const notFound = require('./middleware/notFound');
@@ -11,7 +12,10 @@ const app = express();
 
 // Parse JSON request bodies into req.body
 app.use(requestLogger);
+app.use(helmet());
 app.use(express.json());
+
+
 
 
 
