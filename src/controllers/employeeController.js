@@ -57,7 +57,7 @@ exports.update = async (req, res, next) => {
 // DELETE /employees?eid=xxx → 204
 exports.remove = async (req, res, next) => {
   try {
-    const result = await Employee.findOneAndDelete({ _id: req.query.eid, user: req.user.id });
+    const result = await Employee.findOneAndDelete({ _id: req.params.eid, user: req.user.id });
     if (!result) return res.status(404).json({ status: false, message: 'Employee not found' });
     res.status(204).send(); // 204 must have no body
   } catch (err) { next(err); }
