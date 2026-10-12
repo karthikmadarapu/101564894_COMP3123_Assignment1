@@ -22,7 +22,7 @@ async function auth(req, res, next){
 
     //2. Verify signature + expiry (throws if either fails)
 
-    const decode = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     //3. Make sure the user still exists , then attach it 
     const user = await User.findById(decoded.id).select('-password');
