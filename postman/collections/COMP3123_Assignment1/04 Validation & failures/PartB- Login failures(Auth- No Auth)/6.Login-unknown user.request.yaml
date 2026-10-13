@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/user/login"
+method: POST
+body:
+  type: json
+  content: '{ "email": "nobody@test.com", "password": "Password123!" }'
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"401\", () => pm.response.to.have.status(401));\r
+
+      \  pm.test(\"Generic message\", () => {\r
+
+      \    pm.expect(pm.response.json().message).to.eql(\"Invalid Username and password\");\r
+
+      \  });"
+    language: text/javascript
+order: 2000

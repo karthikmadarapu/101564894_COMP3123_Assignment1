@@ -1,0 +1,18 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/emp/employees/123"
+method: GET
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"Handled cleanly (not 500)\", () => {\r
+
+      \    pm.expect(pm.response.code).to.be.oneOf([400, 404]);\r
+
+      \  });\r
+
+      \  pm.test(\"No stack trace leaked\", () => {\r
+
+      \    pm.expect(pm.response.json()).to.not.have.property(\"stack\");\r
+
+      \  });"
+    language: text/javascript
+order: 3000

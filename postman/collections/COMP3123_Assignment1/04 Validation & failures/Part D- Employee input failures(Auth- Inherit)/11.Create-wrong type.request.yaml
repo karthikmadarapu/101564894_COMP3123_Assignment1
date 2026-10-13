@@ -1,0 +1,33 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/emp/employees"
+method: POST
+body:
+  type: json
+  content: "  {\r
+
+    \    \"first_name\": \"Alice\",\r
+
+    \    \"last_name\": \"Owner\",\r
+
+    \    \"email\": \"{{$randomEmail}}\",\r
+
+    \    \"position\": \"Developer\",\r
+
+    \    \"salary\": \"lots\",\r
+
+    \    \"date_of_joining\": \"2026-10-01\",\r
+
+    \    \"department\": \"Engineering\"\r
+
+    \  }"
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"Rejected with 400\", () => pm.response.to.have.status(400));\r
+
+      \  pm.test(\"Error message returned\", () => {\r
+
+      \    pm.expect(pm.response.json()).to.have.property(\"message\");\r
+
+      \  });"
+    language: text/javascript
+order: 2000

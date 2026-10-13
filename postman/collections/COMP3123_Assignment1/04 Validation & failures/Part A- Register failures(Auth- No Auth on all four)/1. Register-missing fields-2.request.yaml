@@ -1,0 +1,25 @@
+$kind: http-request
+name: 1. Register-missing fields
+url: "{{baseUrl}}/api/v1/user/signup"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"email\": \"missing@test.com\"\r
+
+    \r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"Rejected with 400\", () =>
+      pm.response.to.have.status(400));\r
+
+      \  pm.test(\"Error message returned\", () => {\r
+
+      \    pm.expect(pm.response.json()).to.have.property(\"message\");\r
+
+      \  });"
+    language: text/javascript
+order: 654

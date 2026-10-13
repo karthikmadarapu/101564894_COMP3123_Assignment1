@@ -1,0 +1,23 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/user/login"
+method: POST
+body:
+  type: json
+  content: '{ "email": "{{emailA}}", "password": "WrongPassword!" }'
+scripts:
+  - type: afterResponse
+    code: "  const code = pm.response.code;\r
+
+      \  pm.test(\"Either rejected (401) or rate-limited (429)\", () => {\r
+
+      \    pm.expect(code).to.be.oneOf([401, 429]);\r
+
+      \  });\r
+
+      \  if (code === 429) {\r
+
+      \    pm.test(\"Rate limiter triggered\", () => pm.expect(code).to.eql(429));\r
+
+      \  }"
+    language: text/javascript
+order: 1000

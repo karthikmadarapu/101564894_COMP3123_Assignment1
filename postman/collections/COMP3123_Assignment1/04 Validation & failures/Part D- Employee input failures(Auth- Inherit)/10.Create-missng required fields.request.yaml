@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/emp/employees"
+method: POST
+body:
+  type: json
+  content: '{ "position": "Developer" }'
+auth:
+  type: bearer
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"Rejected with 400\", () => pm.response.to.have.status(400));\r
+
+      \  pm.test(\"Error message returned\", () => {\r
+
+      \    pm.expect(pm.response.json()).to.have.property(\"message\");\r
+
+      \  });"
+    language: text/javascript
+order: 1000

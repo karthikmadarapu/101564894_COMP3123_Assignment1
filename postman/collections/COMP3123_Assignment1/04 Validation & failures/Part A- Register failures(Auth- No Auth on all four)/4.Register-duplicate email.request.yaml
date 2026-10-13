@@ -1,0 +1,17 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/user/signup"
+method: POST
+body:
+  type: json
+  content: '{ "username": "dupe", "email": "{{emailA}}", "password": "Password123!" }'
+scripts:
+  - type: afterResponse
+    code: "  pm.test(\"Rejected with 400\", () => pm.response.to.have.status(400));\r
+
+      \  pm.test(\"Error message returned\", () => {\r
+
+      \    pm.expect(pm.response.json()).to.have.property(\"message\");\r
+
+      \  });"
+    language: text/javascript
+order: 3000

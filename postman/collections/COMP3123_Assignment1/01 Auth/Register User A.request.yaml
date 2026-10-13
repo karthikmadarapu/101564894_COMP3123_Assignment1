@@ -5,11 +5,15 @@ body:
   type: json
   content: "   {\r
 
-    \     \"username\": \"userA\",\r
+    \     \"username\": \"user123\",\r
 
-    \     \"email\": \"{{emailA}}\",\r
+    \     \"email\"   : \"{{emailA}}\",\r
 
-    \     \"password\": \"Password123!\"\r
+    \     \"password\": \"password123!\"\r
+
+    \   \r
+
+    \     \r
 
     \   }"
 scripts:

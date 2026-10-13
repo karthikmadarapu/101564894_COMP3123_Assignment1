@@ -1,0 +1,13 @@
+$kind: http-request
+name: 8.Malformed token.
+url: "{{baseUrl}}/api/v1/emp/employees"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: abc123
+scripts:
+  - type: afterResponse
+    code: pm.test("Rejected with 401", () => pm.response.to.have.status(401));
+    language: text/javascript
+order: 2000

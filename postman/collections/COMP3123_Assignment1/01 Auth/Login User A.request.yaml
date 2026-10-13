@@ -5,11 +5,17 @@ body:
   type: json
   content: "  {\r
 
-    \    \"email\": \"{{emailA}}\",\r
+    \     \r
 
-    \    \"password\": \"Password123!\"\r
+    \    \"email\"     : \"{{emailA}}\",\r
 
-    \  }"
+    \    \"password\"  :  \"password123!\"\r
+
+    \   \r
+
+    \    \r
+
+    }"
 scripts:
   - type: afterResponse
     code: "  pm.test(\"Login A succeeds (200)\", () => {\r

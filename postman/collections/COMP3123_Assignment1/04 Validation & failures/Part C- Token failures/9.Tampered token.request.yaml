@@ -1,0 +1,12 @@
+$kind: http-request
+url: "{{baseUrl}}/api/v1/emp/employees"
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhY2Q1MjZiYzIyYzU1MzgxNjAyYjcwZSIsInVzZXJuYW1lIjoidXNlckEiLCJpYXQiOjE3OTE4NDU2NDEsImV4cCI6MTc5MTg0OTI0MX0.Y_6pI9uQD6XfVIiyXtBjxf5pqDrzBlLZcFoEMNoF6VB
+scripts:
+  - type: afterResponse
+    code: pm.test("Rejected with 401", () => pm.response.to.have.status(401));
+    language: text/javascript
+order: 3000
