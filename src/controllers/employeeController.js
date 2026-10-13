@@ -1,5 +1,5 @@
 const { matchedData } = require('express-validator');
-const  Employee = require('../models/Employee');
+const  Employee = require('../models/employee');
 
 // GET /employees → 200
 exports.getAll = async (req, res, next) => {
