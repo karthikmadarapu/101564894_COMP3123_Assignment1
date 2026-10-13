@@ -14,7 +14,7 @@ const apiLimiter = rateLimit({
 
 // Strict limiter for login and signup
 const authLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,   // 15 minutes
+  windowMs: 15 * 60 * 1000, // 15 minutes
   limit: 5,                   // only 5 attempts per IP per window
   standardHeaders: 'draft-8',
   legacyHeaders: false,
